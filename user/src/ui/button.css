@@ -1,0 +1,18 @@
+.ui_button{
+       padding: 10px;
+       width: 100%;
+       background-color:#165ef0;
+       border-radius: 4px;
+       outline: none;
+       border: none;
+       cursor: pointer;
+       color: white;
+       transition: all 0.2s;
+       margin-top:2px;
+}
+.ui_button:active{
+       background-color:#165ef0;
+}
+.ui_button:hover{
+       background-color:#1953c7;
+}

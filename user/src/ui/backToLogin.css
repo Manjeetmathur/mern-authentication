@@ -1,0 +1,28 @@
+.ui_back{
+       padding: 10px;
+       width: 100%;
+       background-color:rgb(235, 233, 233);
+       border: 2px solid blue;
+       border-radius: 4px;
+       outline: none;
+       border: none;
+       cursor: pointer;
+       color: #165ef0;
+       /* font-weight: 550; */
+       transition: all 0.2s;
+       margin: px 0;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       
+}
+.ui_back:active{
+       background-color:rgb(231, 231, 231);
+}
+.ui_back:hover{
+       background-color:rgb(238, 238, 238);
+}
+.arrow{
+       font-size: 16px;
+       margin-right: 8px;
+}
