@@ -7,6 +7,7 @@ import BackToLogin from "../ui/BackToLogin";
 import Timer from "./Timer";
 import toast from "react-hot-toast";
 import LoadingButton from "../ui/LoadingButton";
+import { url } from "../components/BackendLink";
 const VerifyOTP = () => {
   const ref1 = useRef(null);
   const ref2 = useRef(null);
@@ -53,7 +54,7 @@ const VerifyOTP = () => {
       try {
         
       console.log("HIIII");
-        const data = await fetch("http://localhost:5555/user/otp", {
+        const data = await fetch(`${url}/user/otp`, {
           method : "POST",
           body : JSON.stringify({token}),
           headers : {

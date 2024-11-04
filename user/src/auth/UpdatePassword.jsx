@@ -7,7 +7,7 @@ import { Link , useNavigate} from "react-router-dom";
 import BackToLogin from "../ui/BackToLogin";
 import toast from "react-hot-toast";
 import LoadingButton from "../ui/LoadingButton";
-
+import { url } from "../components/BackendLink";
 const UpdatePassword = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -19,7 +19,7 @@ const UpdatePassword = () => {
     const token = localStorage.getItem("otp-token")
     try {
       setLoading(true)
-      const data = await fetch("http://localhost:5555/user/update-password",{
+      const data = await fetch(`${url}/user/update-password`,{
         method:"PATCH",
         body:JSON.stringify({token,password,confirmPassword}),
         headers : {"Content-Type" : "application/json"}

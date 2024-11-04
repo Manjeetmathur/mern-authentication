@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { Navigate, Outlet } from "react-router-dom";
-
+import { url } from "./BackendLink";
 const Super = () => {
   const [loading, setLoading] = useState(true);
   const [auth, setAuth] = useState(false);
@@ -11,7 +11,7 @@ const Super = () => {
     const getAccess = async () => {
       try {
         setLoading(true);
-        const data = await fetch("http://localhost:5555/user/get-access", {
+        const data = await fetch(`${url}/user/get-access`, {
           method: "POST",
           body: JSON.stringify({ token: localStorage.getItem("otp-token") }),
           headers: { "Content-Type": "application/json" },

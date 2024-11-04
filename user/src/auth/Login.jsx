@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import LoadingButton from "../ui/LoadingButton";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
+import { url } from "../components/BackendLink";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,7 +32,7 @@ const Login = () => {
     
     try {
       setLoading(true)
-      const data =await fetch("http://localhost:5555/user/login",{
+      const data =await fetch(`${url}/user/login`,{
         method : "POST",
         body : JSON.stringify({email,password}),
         headers : {

@@ -7,6 +7,7 @@ import { Link , useNavigate} from "react-router-dom";
 import BackToLogin from "../ui/BackToLogin";
 import toast from "react-hot-toast";
 import LoadingButton from "../ui/LoadingButton";
+import { url } from "../components/BackendLink";
 const ForgetPass = () => {
   const [email, setEmail] = useState("");
   const navigate = useNavigate()
@@ -19,7 +20,7 @@ const ForgetPass = () => {
     try {
       setLoading(true)
       
-      const data = await fetch("http://localhost:5555/user/forget-password", {
+      const data = await fetch(`${url}/user/forget-password`, {
         method : "POST",
         body : JSON.stringify({email}),
         headers : {

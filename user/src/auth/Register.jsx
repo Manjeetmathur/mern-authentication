@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import LoadingButton from "../ui/LoadingButton";
+import { url } from "../components/BackendLink";
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -24,10 +25,10 @@ const Register = () => {
 
   const submitHandler = async (event) => {
     event.preventDefault();
-
+//"http://localhost:5555/user/register"
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:5555/user/register", {
+      const response = await fetch(`${url}/user/register`, {
         method : "POST",
         body : JSON.stringify({email,password,name,confirmPassword}),
         headers : {
