@@ -9,6 +9,7 @@ const register = async (req, res) => {
 
   // console.log(name, email, password, confirmPassword);
 
+  
   try {
     if (password !== confirmPassword) {
       throw new Error("Password does not match . . .");
@@ -29,13 +30,13 @@ const register = async (req, res) => {
     });
     await newUser.save();
 
-    return res.status(200).json({
+    res.status(200).json({
       message: "user registered successfully . . .",
       success: true,
       error: false,
     });
   } catch (error) {
-    return res.json({
+    res.json({
       success: false,
       message: error.message,
     });
