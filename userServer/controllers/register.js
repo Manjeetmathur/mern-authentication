@@ -7,7 +7,7 @@ import sendMail from "../utils/sendMail.js";
 const register = async (req, res) => {
   const { name, email, password, confirmPassword } = req.body;
 
-  console.log(name, email, password, confirmPassword);
+  // console.log(name, email, password, confirmPassword);
 
   try {
     if (password !== confirmPassword) {
@@ -29,13 +29,13 @@ const register = async (req, res) => {
     });
     await newUser.save();
 
-    res.status(200).json({
+    return res.status(200).json({
       message: "user registered successfully . . .",
       success: true,
       error: false,
     });
   } catch (error) {
-    res.json({
+    return res.json({
       success: false,
       message: error.message,
     });
