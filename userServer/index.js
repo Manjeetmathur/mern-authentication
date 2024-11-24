@@ -36,6 +36,6 @@ app.use((error,req,res,next)=>{
 
 getConnection()
 
-const PORT = process.env.PORT  || 5555
+const PORT = process.env.PORT 
 
-app.listen(PORT , ()=>console.log(`server is running . . .${process.env.PORT}`));
+app.listen(PORT || 5555 , ()=>console.log(`server is running . . .${process.env.PORT}`));
