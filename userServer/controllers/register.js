@@ -1,5 +1,5 @@
 import { User } from "../models/User.js";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import joi from "joi";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
@@ -10,24 +10,25 @@ const register = async (req, res) => {
   // console.log(name, email, password, confirmPassword);
 
   try {
-    if (password !== confirmPassword) {
-      throw new Error("Password does not match . . .");
-    }
-
     const finduser = await User.findOne({ email });
 
     if (finduser) {
       throw new Error("User Already registered . . .");
     }
 
+    
+    if (password !== confirmPassword) {
+      throw new Error("Password does not match . . .");
+    }
+
+
     const hashPassword = await bcrypt.hash(password, 10);
 
-    const newUser = new User({
+    const newUser = await User.create({
       name,
       email,
       password: hashPassword,
     });
-    await newUser.save();
 
     res.status(200).json({
       message: "user registered successfully . . .",
@@ -44,7 +45,6 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   const { email, password } = req.body;
-  console.log(email, password);
 
   try {
     if (!email || !password) {
@@ -56,7 +56,7 @@ const login = async (req, res) => {
     }
     // console.log(user.password);
 
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid =bcrypt.compare(password, user.password);
 
     // console.log(isPasswordValid);
 
@@ -85,26 +85,23 @@ const login = async (req, res) => {
     });
   } catch (error) {
     res.json({
-      message: error.message || error,
+      message: error.message,
       error: true,
       success: false,
     });
   }
 };
 
+
 const forgetPassword = async (req, res) => {
   const { email } = req.body;
   try {
     const user = await User.findOne({ email });
-    // console.log("user -forgt :", user);
 
     if (!user) {
       throw new Error("user not Found . . .");
     }
-    // console.log(user.otp.otp,new Date(user.otp.sendTime).getTime(),new Date().getTime());
     const ans = user.otp.otp && user.otp.sendTime > new Date().getTime();
-    // console.log("ans ", ans);
-
     if (ans) {
       throw new Error(
         `please wait until ${new Date(user.otp.sendTime).toLocaleTimeString()}`
@@ -129,7 +126,7 @@ const forgetPassword = async (req, res) => {
     });
   } catch (error) {
     res.json({
-      message: error,
+      message: error.message,
       success: false,
     });
   }
@@ -206,7 +203,11 @@ const updatePassowrd = async (req, res) => {
       //  console.log(err);
     }
   } catch (error) {
-    throw new Error(error);
+    res.json({
+      message: "Password updated",
+      success: false,
+      error: true,
+    });
   }
 };
 

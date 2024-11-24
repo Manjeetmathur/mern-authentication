@@ -52,9 +52,7 @@ const VerifyOTP = () => {
   useEffect(() => {
     const getTime = async () => {
       try {
-        
-      console.log("HIIII");
-        const data = await fetch(`${url}/user/otp`, {
+        const data = await fetch(`${url}/otp`, {
           method : "POST",
           body : JSON.stringify({token}),
           headers : {
@@ -62,19 +60,15 @@ const VerifyOTP = () => {
           }
         });
         
-      console.log("HIIII");
         const response = await data.json();
         if (response.success) {
           const remainingTime =
             new Date(response.data).getTime() - new Date().getTime();
-          // console.log("remain ", remainingTime);
-
           if (remainingTime > 0) {
             setTime(remainingTime);
           } else {
             setExpire(true);
           }
-          // console.log(response.data);
         }
       } catch (error) {}
     };
@@ -85,6 +79,7 @@ const VerifyOTP = () => {
 
   const finalOtp = otp1 + otp2 + otp3 + otp4 + otp5 + otp6;
 
+  
   const submitHandler = async (e) => {
     e.preventDefault();
 

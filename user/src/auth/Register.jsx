@@ -28,7 +28,7 @@ const Register = () => {
 //"http://localhost:5555/user/register"
     try {
       setLoading(true);
-      const response = await fetch(`${url}/user/register`, {
+      const response = await fetch(`${url}/register`, {
         method : "POST",
         body : JSON.stringify({email,password,name,confirmPassword}),
         headers : {
@@ -37,8 +37,10 @@ const Register = () => {
       });
 
       const result = await response.json();
+      console.log(result);
+      
       setLoading(false);
-//comment added
+
 
       if (result.success) {
         toast.success(result.message);

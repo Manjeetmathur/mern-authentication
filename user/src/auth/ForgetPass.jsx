@@ -20,7 +20,7 @@ const ForgetPass = () => {
     try {
       setLoading(true)
       
-      const data = await fetch(`${url}/user/forget-password`, {
+      const data = await fetch(`${url}/forget-password`, {
         method : "POST",
         body : JSON.stringify({email}),
         headers : {

@@ -19,7 +19,7 @@ const UpdatePassword = () => {
     const token = localStorage.getItem("otp-token")
     try {
       setLoading(true)
-      const data = await fetch(`${url}/user/update-password`,{
+      const data = await fetch(`${url}/update-password`,{
         method:"PATCH",
         body:JSON.stringify({token,password,confirmPassword}),
         headers : {"Content-Type" : "application/json"}
@@ -38,7 +38,7 @@ const UpdatePassword = () => {
       }
 
     } catch (error) {
-      toast.error(error)
+      toast.error(error.message)
     }
   };
   return (

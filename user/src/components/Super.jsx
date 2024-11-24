@@ -11,7 +11,7 @@ const Super = () => {
     const getAccess = async () => {
       try {
         setLoading(true);
-        const data = await fetch(`${url}/user/get-access`, {
+        const data = await fetch(`${url}/get-access`, {
           method: "POST",
           body: JSON.stringify({ token: localStorage.getItem("otp-token") }),
           headers: { "Content-Type": "application/json" },
@@ -24,7 +24,7 @@ const Super = () => {
           setAuth(true);
         }
       } catch (error) {
-        toast.error(error);
+        toast.error(error.message);
         setLoading(false);
       }
     };

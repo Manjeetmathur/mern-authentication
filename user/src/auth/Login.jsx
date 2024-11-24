@@ -32,12 +32,13 @@ const Login = () => {
     
     try {
       setLoading(true)
-      const data =await fetch(`${url}/user/login`,{
+      const data =await fetch(`${url}/login`,{
         method : "POST",
         body : JSON.stringify({email,password}),
         headers : {
           "Content-Type": "application/json"
-        }
+        },
+        credentials:"include"
       })
       const resopnse  = await data.json()
       setLoading(false)
