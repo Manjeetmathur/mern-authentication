@@ -38,6 +38,7 @@ const Register = () => {
 
       const result = await response.json();
       setLoading(false);
+//comment added
 
       if (result.success) {
         toast.success(result.message);
